@@ -96,7 +96,17 @@ const Index: React.FC = () => {
       </Card>
       <Divider />
       <Card title="返回结果" loading={invokeLoading}>
-        {invokeRes}
+        <pre>
+          {(() => {
+            if (invokeRes) {
+              try {
+                return JSON.stringify(JSON.parse(invokeRes), null, 2);
+              } catch (e) {
+                return 'Invalid JSON';
+              }
+            }
+          })()}
+        </pre>
       </Card>
     </PageContainer>
   );
